@@ -341,3 +341,20 @@ int main() {
 
     return 0;
 }
+/*
+    Função extra: salva os componentes cadastrados em um arquivo texto.
+    Cada componente é salvo em uma linha no formato:
+    nome;tipo;prioridade
+*/
+void salvarComponentesEmArquivo(Componente vet[], int n, const char *nomeArquivo) {
+    FILE *f = fopen(nomeArquivo, "w");
+    if (!f) {
+        printf("Erro ao abrir arquivo para escrita: %s\n", nomeArquivo);
+        return;
+    }
+    for (int i = 0; i < n; i++) {
+        fprintf(f, "%s;%s;%d\n", vet[i].nome, vet[i].tipo, vet[i].prioridade);
+    }
+    fclose(f);
+    printf("\nComponentes salvos em '%s'.\n", nomeArquivo);
+}
